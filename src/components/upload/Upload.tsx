@@ -74,7 +74,9 @@ const Upload = () => {
 
     const { name: fileName, path: filePath } = files[0] as ElectronFile;
 
-    if (fileName.slice(-2) !== '.q') {
+    console.log(fileName);
+
+    if (fileName.slice(-2) !== '.q' && fileName.slice(-6) !== '.q.txt') {
       setStatus(Status.ERROR);
       setStatusMessage('Invalid file type.');
       dispatch(reset());
@@ -114,8 +116,8 @@ const Upload = () => {
       />
       <Box sx={{ display: 'flex', flexDirection: 'column', marginBottom: 2 }}>
         <Input
-          type="file"
-          id="config-input"
+          type='file'
+          id='config-input'
           onChange={handleInputChange}
           sx={{ display: 'none' }}
         />
@@ -133,7 +135,7 @@ const Upload = () => {
           }}
         >
           {configLoaded ? (
-            <Typography fontWeight={500} color="primary">
+            <Typography fontWeight={500} color='primary'>
               {fileName}
             </Typography>
           ) : (
@@ -148,14 +150,14 @@ const Upload = () => {
       </Box>
       <Button
         disabled={!configLoaded}
-        variant="contained"
+        variant='contained'
         onClick={handleUploadClick}
         sx={{ marginBottom: 2 }}
       >
         Upload
       </Button>
       <Box>
-        <Typography color="error">{statusMessage}</Typography>
+        <Typography color='error'>{statusMessage}</Typography>
       </Box>
     </Box>
   );
